@@ -5,24 +5,13 @@ import {
 } from '@nestjs/common';
 import { DateTime } from 'luxon';
 import { PrismaService } from '../../database/prisma.service';
-import { NewPayment } from '../payment/new-payment';
-import { PaymentFactory } from '../payment/payment-factory';
-import { PaymentTypeEnum } from '../payment/payment-type.enum';
-import { PaymentInterface } from '../payment/payment.interface';
 import { CreateBillingDto } from './dto/create-billing.dto';
 import { UpdateBillingDto } from './dto/update-billing.dto';
 import { BillingStatusEnum } from './enum/billing-status.enum';
 
 @Injectable()
 export class BillingService {
-  private readonly payment: PaymentInterface;
-
-  constructor(
-    private readonly prismaService: PrismaService,
-    private readonly paymentFactory: PaymentFactory,
-  ) {
-    this.payment = this.paymentFactory.createAsaasPayment();
-  }
+  constructor(private readonly prismaService: PrismaService) {}
 
   async dashboard() {
     const billings = await this.prismaService.billing.groupBy({

@@ -4,7 +4,6 @@ import { UserModule } from './app/user/user.module';
 import { CustomerModule } from './app/customer/customer.module';
 import { BillingModule } from './app/billing/billing.module';
 import { AuthModule } from './app/auth/auth.module';
-import { PaymentModule } from './app/payment/payment.module';
 
 @Module({
   imports: [
@@ -13,7 +12,6 @@ import { PaymentModule } from './app/payment/payment.module';
     CustomerModule,
     BillingModule,
     AuthModule,
-    PaymentModule,
   ],
   controllers: [],
   providers: [],

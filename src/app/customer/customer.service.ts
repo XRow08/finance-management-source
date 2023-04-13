@@ -4,22 +4,13 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { PrismaService } from '../../database/prisma.service';
-import { PaymentCustomer } from '../payment/payment-customer';
-import { PaymentFactory } from '../payment/payment-factory';
-import { PaymentInterface } from '../payment/payment.interface';
 import { CreateCustomerDto } from './dto/create-customer.dto';
 import { UpdateCustomerDto } from './dto/update-customer.dto';
 
 @Injectable()
 export class CustomerService {
-  private readonly payment: PaymentInterface;
 
-  constructor(
-    private readonly prismaService: PrismaService,
-    private readonly paymentFactory: PaymentFactory,
-  ) {
-    this.payment = this.paymentFactory.createAsaasPayment();
-  }
+  constructor (private readonly prismaService: PrismaService) {}
 
   async findAll() {
     return this.prismaService.customer.findMany({
